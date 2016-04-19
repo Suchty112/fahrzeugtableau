@@ -127,4 +127,7 @@ if (window.location.pathname === "/" || window.location.pathname === "/#") {
             sendData(getStations());
         });
     });
+
+    // add a button showing the user id and link to the tableau
+    $('#news_li').before('<li><a href="http://tableau.eagledev.de" target="_blank">'+ user_id +'</a></li>');
 }
