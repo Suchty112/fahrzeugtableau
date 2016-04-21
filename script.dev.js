@@ -16,6 +16,9 @@ var allowedBuildings = {
     // data is sent like thisd
     exampleData = [
         {
+            userId: user_id
+        },
+        {
             id: '1234',
             name: 'Testname 1',
             stationType: 0,
@@ -95,7 +98,6 @@ function getStations() {
 
 // sends the given data via POST request to the tableau
 function sendData(data) {
-    window.alert('');
     $.ajax({
         url: 'http://tableau.eagledev.de/input.php',
         method: 'POST',
@@ -129,5 +131,5 @@ if (window.location.pathname === "/" || window.location.pathname === "/#") {
     });
 
     // add a button showing the user id and link to the tableau
-    $('#news_li').before('<li><a href="http://tableau.eagledev.de" target="_blank">'+ user_id +'</a></li>');
+    $('#news_li').before('<li><a href="http://tableau.eagledev.de/login.php?id='+ user_id +'" target="_blank">'+ user_id +'</a></li>');
 }
