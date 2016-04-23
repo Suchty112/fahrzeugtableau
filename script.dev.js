@@ -1,62 +1,62 @@
 // allowed buildings (true) are sent to the php script, denied buildings (false) are not
 var allowedBuildings = {
-    0: true,    // firestation
-    1: false,   // fireschool
-    2: true,    // medical station
-    3: false,   // medical school
-    4: false,   // hospital
-    5: true,    // helicopter
-    6: true,    // police station
-    8: false,   // police school
-    9: true,    // THW
-    10: false,  // THW school
-    11: true    // BePo
-},
+        0: true,    // firestation
+        1: false,   // fireschool
+        2: true,    // medical station
+        3: false,   // medical school
+        4: false,   // hospital
+        5: true,    // helicopter
+        6: true,    // police station
+        8: false,   // police school
+        9: true,    // THW
+        10: false,  // THW school
+        11: true    // BePo
+    },
 
     // data is sent like thisd
-    exampleData = [
-        {
-            userId: user_id
-        },
-        {
-            id: '1234',
-            name: 'Testname 1',
-            stationType: 0,
-            cars: [
-                {
-                    id: '4321',
-                    carType: 15,
-                    name: 'Testauto 1',
-                    status: 2
-                },
-                {
-                    id: '4322',
-                    carType: 10,
-                    name: 'Testauto 2',
-                    status: 5
-                }
-            ]
-        },
-        {
-            id: '1235',
-            name: 'Testname 2',
-            stationType: 8,
-            cars: [
-                {
-                    id: '4323',
-                    carType: 15,
-                    name: 'Testauto 3',
-                    status: 2
-                },
-                {
-                    id: '4324',
-                    carType: 17,
-                    name: 'Testauto 4',
-                    status: 5
-                }
-            ]
-        }
-    ];
+    exampleData      = {
+        userId: 4156156,
+        stations: [
+            {
+                id: '1234',
+                name: 'Testname 1',
+                stationType: 0,
+                cars: [
+                    {
+                        id: '4321',
+                        carType: 15,
+                        name: 'Testauto 1',
+                        status: 2
+                    },
+                    {
+                        id: '4322',
+                        carType: 10,
+                        name: 'Testauto 2',
+                        status: 5
+                    }
+                ]
+            },
+            {
+                id: '1235',
+                name: 'Testname 2',
+                stationType: 8,
+                cars: [
+                    {
+                        id: '4323',
+                        carType: 15,
+                        name: 'Testauto 3',
+                        status: 2
+                    },
+                    {
+                        id: '4324',
+                        carType: 17,
+                        name: 'Testauto 4',
+                        status: 5
+                    }
+                ]
+            }
+        ]
+    };
 
 // returns the cars of the given station as a JSON Array
 function getCarsByStation(stationElement) {
@@ -117,19 +117,25 @@ function sendData(data) {
 
 // only apply when the index page is open
 if (window.location.pathname === "/" || window.location.pathname === "/#") {
-    $(document).ready(function(){
+    $(document).ready(function() {
         // catch faye event
-        faye.subscribe('/private-user'+ user_id +'de', function() {
+        faye.subscribe('/private-user' + user_id + 'de', function() {
             // call the method to sent stations to the tableau
-            sendData(getStations());
+            sendData({
+                userId: user_id,
+                stations: getStations()
+            });
         });
         // catch faye event
-        faye.subscribe('/private-alliance'+ alliance_id +'de', function() {
+        faye.subscribe('/private-alliance' + alliance_id + 'de', function() {
             // call the method to sent stations to the tableau
-            sendData(getStations());
+            sendData({
+                userId: user_id,
+                stations: getStations()
+            });
         });
     });
 
     // add a button showing the user id and link to the tableau
-    $('#news_li').before('<li><a href="http://tableau.eagledev.de/login.php?id='+ user_id +'" target="_blank">'+ user_id +'</a></li>');
+    $('#news_li').before('<li><a href="http://tableau.eagledev.de/login.php?u=' + user_id + '" target="_blank">Tableau</a></li>');
 }
