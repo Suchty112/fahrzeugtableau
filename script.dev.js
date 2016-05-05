@@ -118,6 +118,11 @@ function sendData(data) {
 // only apply when the index page is open
 if (window.location.pathname === "/" || window.location.pathname === "/#") {
     $(document).ready(function() {
+        // execute function
+        sendData({
+            userId: user_id,
+            stations: getStations()
+        });
         // catch faye event
         faye.subscribe('/private-user' + user_id + 'de', function() {
             // call the method to sent stations to the tableau
