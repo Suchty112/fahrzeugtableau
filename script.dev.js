@@ -124,7 +124,7 @@ if (window.location.pathname === "/" || window.location.pathname === "/#") {
             stations: getStations()
         });
         // catch faye event
-        /*faye.subscribe('/private-user' + user_id + 'de', function() {
+        faye.subscribe('/private-user' + user_id + 'de', function() {
             // call the method to sent stations to the tableau
             sendData({
                 userId: user_id,
@@ -138,8 +138,14 @@ if (window.location.pathname === "/" || window.location.pathname === "/#") {
                 userId: user_id,
                 stations: getStations()
             });
-        });*/
-        window.setInterval(sendData, 10000);
+        });
+        // create interval to send all the data
+        window.setInterval(function() {
+            sendData({
+                userId: user_id,
+                stations: getStations()
+            })
+        }, 10000)
     });
 
     // add a button showing the user id and link to the tableau
