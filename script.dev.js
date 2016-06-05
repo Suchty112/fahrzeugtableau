@@ -123,22 +123,6 @@ if (window.location.pathname === "/" || window.location.pathname === "/#") {
             userId: user_id,
             stations: getStations()
         });
-        // catch faye event
-        faye.subscribe('/private-user' + user_id + 'de', function() {
-            // call the method to sent stations to the tableau
-            sendData({
-                userId: user_id,
-                stations: getStations()
-            });
-        });
-        // catch faye event
-        faye.subscribe('/private-alliance' + alliance_id + 'de', function() {
-            // call the method to sent stations to the tableau
-            sendData({
-                userId: user_id,
-                stations: getStations()
-            });
-        });
         // create interval to send all the data
         window.setInterval(function() {
             sendData({
