@@ -10,7 +10,8 @@ var allowedBuildings = {
         8: false,   // police school
         9: true,    // THW
         10: false,  // THW school
-        11: true    // BePo
+        11: true,   // BePo
+        12: true,   // SEG 
     },
 
     // data is sent like thisd
