@@ -5,13 +5,14 @@ var allowedBuildings = {
         2: true,    // medical station
         3: false,   // medical school
         4: false,   // hospital
-        5: true,    // helicopter
+        5: true,    // medial helicopter
         6: true,    // police station
         8: false,   // police school
         9: true,    // THW
         10: false,  // THW school
         11: true,   // BePo
-        12: true   // SEG 
+        12: true,   // SEG 
+        13: true    // police helicopter
     },
 
     // data is sent like thisd
