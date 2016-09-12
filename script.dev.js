@@ -12,7 +12,8 @@ var allowedBuildings = {
         10: false,  // THW school
         11: true,   // BePo
         12: true,   // SEG 
-        13: true    // police helicopter
+        13: true,    // police helicopter
+        14: false    // Bereitstellungsraum
     },
 
     // data is sent like thisd
